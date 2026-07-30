@@ -1,0 +1,7 @@
+.git/
+*.md
+Dockerfile
+.dockerignore
+build.sh
+amd64/
+arm64/
