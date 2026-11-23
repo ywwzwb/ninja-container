@@ -56,6 +56,9 @@ git push origin v1.0.9
   - `ninja-config:/root/.config/ninjadesktop` (appconfig.yaml)
   - `ninja-data:/root/.local/share/ninjadesktop` (登录凭据、订阅、geodata、bootstrap.yaml)
   - `/etc/ninja` 是旧的空卷, 应用实际不用它
+- WebUI 有访问 token(默认每次启动随机, 登录接口也会先校验它, 不带 token 就返回 401 `unauthorized`),
+  已在容器里执行 `ninjadesktop-lite config set token <固定值>` 固定下来; 首次打开用
+  `http://<host>:9190/?token=<固定值>`, 之后 token 存在浏览器 localStorage(`ninja_token`).
 - 该机 docker 拉层时 `pkg-containers.githubusercontent.com` 会被解析成 IPv6 而卡死,
   已在 `/etc/hosts` 固定为 `185.199.108.154 pkg-containers.githubusercontent.com`
 - 迁移/升级时不要复制 `kernel.pid`、`kernel_session.json`、`lite-instance.sock`, 让应用重新生成.
